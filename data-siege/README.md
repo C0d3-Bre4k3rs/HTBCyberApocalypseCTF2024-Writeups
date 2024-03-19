@@ -1,7 +1,7 @@
 
 # Forensics: data-siege
-solver: [ProfessorZak](https://github.com/ProfessorZak)  
-writeup-writer: [ProfessorZak](https://github.com/ProfessorZak) + [L3d](https://github.com/imL3d)
+solver: [Pr0f3550rZak](https://github.com/Pr0f3550rZak)  
+writeup-writer: [Pr0f3550rZak](https://github.com/Pr0f3550rZak) + [L3d](https://github.com/imL3d)
 ___
 **Author:** Nauten  
 **Description:**
