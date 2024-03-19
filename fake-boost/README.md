@@ -1,5 +1,5 @@
 
-# CATEGORY: chall-name
+# Forensics: fake-boost
 solver: [ProfessorZak](https://github.com/ProfessorZak)  
 writeup-writer: [ProfessorZak](https://github.com/ProfessorZak) + [L3d](https://github.com/imL3d)
 ___
