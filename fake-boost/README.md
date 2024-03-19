@@ -16,7 +16,7 @@ In this challenge, we are given a file, "capture.pcapng". We need to analyse thi
 
 ### Part 1 😎
 
-Upon examining the pcapng we see that it' essense an HTTP communication, and on closer look we can find specifically one interesting packet, that seems to contain a long base64 encoded string - some sort of a powershell exploit:  
+Upon examining the pcapng we see that it's essense is an HTTP communication, and on closer look we can find specifically one interesting packet, that seems to contain a long base64 encoded string - some sort of a powershell exploit:  
 
 ![screenshot1](_images/screenshot1.png)  
 
