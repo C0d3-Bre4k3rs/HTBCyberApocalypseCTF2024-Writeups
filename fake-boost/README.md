@@ -1,7 +1,7 @@
 
 # CATEGORY: chall-name
 solver: [ProfessorZak](https://github.com/ProfessorZak)  
-writeup-writer: [ProfessorZak](https://github.com/ProfessorZak) (with help from [L3d](https://github.com/imL3d))
+writeup-writer: [ProfessorZak](https://github.com/ProfessorZak) + [L3d](https://github.com/imL3d)
 ___
 **Author:** gordic  
 **Description:**
