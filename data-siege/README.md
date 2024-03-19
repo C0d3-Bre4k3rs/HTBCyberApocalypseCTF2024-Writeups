@@ -14,7 +14,7 @@ In this challenge we are given a network capture file, “capture.pcap”. We ne
 ## Solution
 
 
-On first examination we see that this is a `TCP/IP` and `HTTP` communication. Nothing really pops on a first glace, so this time we decide to use a PCAP online analysis tool, to help us speed up the process. We uploaded the capture to [A-Packets](https://apackets.com/). This helps us find an HTTP request for downloading and executable:  
+On first examination we see that this is a `TCP/IP` and `HTTP` communication. Nothing really pops on a first glace, so this time we decide to use a PCAP online analysis tool, to help us speed up the process. We upload  the capture to [A-Packets](https://apackets.com/). This helps us find an HTTP request for downloading and executable:  
 
 
 ![screenshot1](_images/screenshot1.png)  
@@ -35,7 +35,55 @@ So we were right!
 The traffic on port `1234` is being encrypted, so let's decrypt it!  
 We create a bodged C# code, and the only thing left is to input each base64 encoded string from the pcap file, and decrypt them:    
 
-![screenshot4](_images/screenshot4.png)  
+```C#
+
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System;
+
+public class Main
+{
+    public static void Main(string[] args)
+    {
+        string cipherText = "";
+        string encryptKey = "VYAemVe03zUDTL6N62kVA";
+        byte[] array = Convert.FromBase64String(cipherText);
+        using(Aes aes = Aes.Create())
+        {
+            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(encryptKey, new byte[]
+            {
+                86,
+                101,
+                114,
+                121,
+                95,
+                83,
+                51,
+                99,
+                114,
+                51,
+                11,
+                95,
+                83
+            });
+            aes.Key = rfc2898DeriveBytes.GetBytes(32);
+            aes.IV = rfc2898DeriveBytes.GetBytes(16);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Write)) 
+                {
+                    cryptoStream.Write(array, 0, array.Length);
+                    cryptoStream.Close();
+                }
+                cipherText = Encoding.Default.GetString(memoryStream.ToArray());
+            }
+        }
+        Console.WriteLine(cipherText);
+    }
+}
+
+```
 
 The output is bunch of cmd commands to run. These are the important parts out of it:
 ```
