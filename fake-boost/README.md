@@ -1,6 +1,6 @@
 
 # CATEGORY: chall-name
-solver: [ProfessorZak](https://github.com/ProfessorZak)
+solver: [ProfessorZak](https://github.com/ProfessorZak)  
 writeup-writer: [ProfessorZak](https://github.com/ProfessorZak) (with help from [L3d](https://github.com/imL3d))
 ___
 **Author:** gordic  
@@ -22,7 +22,7 @@ Upon examining the pcapng we see that it' essense an HTTP communication, and on 
 
 Lets understand what it does:  
 First, it saves a base64 encoded string into a variable, then reverses the string, then decodes it, and then executes it.  
-So let's do the same! (Except [running it](_images/ran.gif) ;)  
+So let's do the same! (Except [running it](_images/ran.gif) ;))  
 We get this powerhsell script output: [output.ps](files/output.ps1).  
   
 This code extracts some important data out of the machine, then encrypted it, and finally posts it to the following endpoint: `"http://192.168.116.135:8080/rj1893rj1joijdkajwda"`.  
@@ -38,7 +38,7 @@ After filtering by packets that are being sent to the endpoint we saw earlier, w
 
 ![screenshot2](_images/screenshot2.png)  
 
-To decrypt it we need to use AES mode CBS, as the powershell exploit we found at the first part encrypt this in that way:  
+To decrypt it we need to use [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) mode CBC, as the powershell exploit we found at the first part encrypt this in that way:  
 ```ps1
 # This function is being called without $mode
 # The default encryption mode for the AesManaged object is CBC
@@ -51,6 +51,9 @@ $AES_KEY = "Y1dwaHJOVGs5d2dXWjkzdDE5amF5cW5sYUR1SWVGS2k="
 ```
 Using a short python script we decrypt the the message, to find the flag:
 ```python
+from Crypto.Cipher import AES
+import base64
+
 cipher = AES.new(base64.b64decode(key.encode()), AES.MODE_CBC)
 decrypted = cipher.decrypt(base64.b64decode(encrypted.encode()))
 
