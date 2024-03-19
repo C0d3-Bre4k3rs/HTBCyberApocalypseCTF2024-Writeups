@@ -9,7 +9,7 @@ class CyberApocalypseCTF2024 {
     static public void Main(String[] args) 
     {
       // Team
-      string[] members = {"5h4d0w", "N0am!ster", "L3d", "ProfessorZak", "talsim"};
+      string[] members = {"5h4d0w", "N0am!ster", "L3d", "Pr0f3550rZak", "talsim"};
       int points = 8700;
       int place = 361;
 
